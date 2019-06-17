@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GithubAPI</string>
+    <string name="link"><u>testapp://repos/jakewharton</u></string>
 </resources>

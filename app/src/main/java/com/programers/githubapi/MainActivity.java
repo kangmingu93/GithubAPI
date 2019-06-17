@@ -57,9 +57,6 @@ public class MainActivity extends AppCompatActivity {
             switch (msg.what) {
                 case 0:
                     if (userVO != null && items != null) {
-                        MiniComparator comp = new MiniComparator();
-                        Collections.sort(items, comp);
-
                         MyAdapter adapter = new MyAdapter(userVO, items);
                         recyclerView.setAdapter(adapter);
                     }
@@ -105,6 +102,12 @@ public class MainActivity extends AppCompatActivity {
                 Gson gson = new Gson();
                 Type listType = new TypeToken<ArrayList<ReposVO>>(){}.getType();
                 items = gson.fromJson(body, listType);
+
+                // 정렬
+                MiniComparator comp = new MiniComparator();
+                Collections.sort(items, comp);
+
+                items.add(0, null);
 
                 Message msg = handler.obtainMessage();
                 msg.what = 0;
