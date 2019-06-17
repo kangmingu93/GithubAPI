@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         user = getIntent().getStringExtra("user");
-        Toast.makeText(getApplicationContext(), user, Toast.LENGTH_SHORT).show();
 
         recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
@@ -48,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
 
         link1();
         link2();
-
     }
 
     final Handler handler = new Handler() {
@@ -60,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
                         MyAdapter adapter = new MyAdapter(userVO, items);
                         recyclerView.setAdapter(adapter);
                     }
-
                     break;
             }
         }
@@ -104,9 +101,9 @@ public class MainActivity extends AppCompatActivity {
                 items = gson.fromJson(body, listType);
 
                 // 정렬
-                MiniComparator comp = new MiniComparator();
-                Collections.sort(items, comp);
+                Collections.sort(items);
 
+                // 공백 추가 - User 정보 출력
                 items.add(0, null);
 
                 Message msg = handler.obtainMessage();
